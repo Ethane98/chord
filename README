@@ -1,0 +1,23 @@
+Public repo: https://github.com/Ethane98/chord
+
+Run using the syntax: 
+python3 node.py <ID> <PORT TO RUN ON> <PORT OF NODE TO ADD TO>
+
+Notes:
+-Use 0 for the last argument to specify initial node
+-Nodes must be added onto existing nodes in the correct order; i.e. if a ring has node 50 on port 12345 and node 100 on port 12346, a new node 150 would need to be added to node 100 (12346) and a new node 70 would need to be added to node 50 (12345)
+
+6 node example with m=8:
+python3 node.py 1 12345 0
+python3 node.py 100 12346 12345
+python3 node.py 200 12347 12346
+python3 node.py 90 12348 12345
+python3 node.py 140 12349 12346
+python3 node.py 160 12340 12349
+
+
+Node operation:
+1: Display node info (including Node ID, predecessor/successor ID, files managed by node, and finger table)
+2: Add a file ('mock file' consisting of string data and associated hash key)
+3: Retrieve a file
+4: Remove node (nodes are removed from the ring immediately and operation of other nodes will continue normally, but ctrl+c must be used to kill the node process before it can be restarted)
